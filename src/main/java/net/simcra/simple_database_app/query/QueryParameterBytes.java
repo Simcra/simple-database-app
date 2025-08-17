@@ -1,29 +1,28 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
-import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterBlob implements QueryParameter<Blob> {
-    private Blob value;
+public final class QueryParameterBytes implements QueryParameter<byte[]> {
+    private byte[] value;
 
-    public QueryParameterBlob(Blob value) {
+    public QueryParameterBytes(byte[] value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public Blob getValue() {
+    public byte[] getValue() {
         return value;
     }
 
     @Override
-    public void setValue(Blob value) {
+    public void setValue(byte[] value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setBlob(parameterIndex, value);
+        preparedStatement.setBytes(parameterIndex, value);
     }
 }

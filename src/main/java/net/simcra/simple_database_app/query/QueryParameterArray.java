@@ -1,29 +1,29 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
-import java.sql.NClob;
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterNClob implements QueryParameter<NClob> {
-    private NClob value;
+public final class QueryParameterArray implements QueryParameter<Array> {
+    private Array value;
 
-    public QueryParameterNClob(NClob value) {
+    public QueryParameterArray(Array value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public NClob getValue() {
+    public Array getValue() {
         return value;
     }
 
     @Override
-    public void setValue(NClob value) {
+    public void setValue(Array value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setNClob(parameterIndex, value);
+        preparedStatement.setArray(parameterIndex, value);
     }
 }

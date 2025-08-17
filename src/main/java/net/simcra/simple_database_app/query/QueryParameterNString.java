@@ -1,28 +1,28 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterBytes implements QueryParameter<byte[]> {
-    private byte[] value;
+public final class QueryParameterNString implements QueryParameter<String> {
+    private String value;
 
-    public QueryParameterBytes(byte[] value) {
+    public QueryParameterNString(String value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public byte[] getValue() {
+    public String getValue() {
         return value;
     }
 
     @Override
-    public void setValue(byte[] value) {
+    public void setValue(String value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setBytes(parameterIndex, value);
+        preparedStatement.setNString(parameterIndex, value);
     }
 }

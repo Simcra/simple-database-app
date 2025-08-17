@@ -1,14 +1,14 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterAsciiStream implements QueryParameter<InputStream> {
+public final class QueryParameterBinaryStream implements QueryParameter<InputStream> {
     private InputStream value;
 
-    public QueryParameterAsciiStream(InputStream value) {
+    public QueryParameterBinaryStream(InputStream value) {
         this.value = Objects.requireNonNull(value);
     }
 
@@ -24,6 +24,6 @@ public final class QueryParameterAsciiStream implements QueryParameter<InputStre
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setAsciiStream(parameterIndex, value);
+        preparedStatement.setBinaryStream(parameterIndex, value);
     }
 }

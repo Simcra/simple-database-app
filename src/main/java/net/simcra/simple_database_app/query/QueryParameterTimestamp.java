@@ -1,27 +1,27 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Objects;
 
-public final class QueryParameterTime implements QueryParameter<Time> {
-    private Time value;
+public final class QueryParameterTimestamp implements QueryParameter<Timestamp> {
+    private Timestamp value;
     private Calendar calendar;
 
-    public QueryParameterTime(Time value) {
+    public QueryParameterTimestamp(Timestamp value) {
         this.value = Objects.requireNonNull(value);
         this.calendar = null;
     }
 
     @Override
-    public Time getValue() {
+    public Timestamp getValue() {
         return value;
     }
 
     @Override
-    public void setValue(Time value) {
+    public void setValue(Timestamp value) {
         this.value = Objects.requireNonNull(value);
     }
 
@@ -36,9 +36,9 @@ public final class QueryParameterTime implements QueryParameter<Time> {
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
         if (calendar != null) {
-            preparedStatement.setTime(parameterIndex, value, calendar);
+            preparedStatement.setTimestamp(parameterIndex, value, calendar);
         } else {
-            preparedStatement.setTime(parameterIndex, value);
+            preparedStatement.setTimestamp(parameterIndex, value);
         }
     }
 }

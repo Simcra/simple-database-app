@@ -1,29 +1,28 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
-import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterURL implements QueryParameter<URL> {
-    private URL value;
+public final class QueryParameterLong implements QueryParameter<Long> {
+    private Long value;
 
-    public QueryParameterURL(URL value) {
+    public QueryParameterLong(Long value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public URL getValue() {
+    public Long getValue() {
         return value;
     }
 
     @Override
-    public void setValue(URL value) {
+    public void setValue(Long value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setURL(parameterIndex, value);
+        preparedStatement.setLong(parameterIndex, value.longValue());
     }
 }

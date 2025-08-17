@@ -1,29 +1,29 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
+import java.sql.Clob;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.SQLXML;
 import java.util.Objects;
 
-public final class QueryParameterSQLXML implements QueryParameter<SQLXML> {
-    private SQLXML value;
+public final class QueryParameterClob implements QueryParameter<Clob> {
+    private Clob value;
 
-    public QueryParameterSQLXML(SQLXML value) {
+    public QueryParameterClob(Clob value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public SQLXML getValue() {
+    public Clob getValue() {
         return value;
     }
 
     @Override
-    public void setValue(SQLXML value) {
+    public void setValue(Clob value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setSQLXML(parameterIndex, value);
+        preparedStatement.setClob(parameterIndex, value);
     }
 }

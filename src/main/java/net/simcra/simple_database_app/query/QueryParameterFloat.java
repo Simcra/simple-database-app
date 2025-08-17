@@ -1,28 +1,28 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterShort implements QueryParameter<Short> {
-    private Short value;
+public final class QueryParameterFloat implements QueryParameter<Float> {
+    private Float value;
 
-    public QueryParameterShort(Short value) {
+    public QueryParameterFloat(Float value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public Short getValue() {
+    public Float getValue() {
         return value;
     }
 
     @Override
-    public void setValue(Short value) {
+    public void setValue(Float value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setShort(parameterIndex, value.shortValue());
+        preparedStatement.setFloat(parameterIndex, value.floatValue());
     }
 }

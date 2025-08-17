@@ -1,29 +1,29 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
-import java.sql.Clob;
 import java.sql.PreparedStatement;
+import java.sql.Ref;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterClob implements QueryParameter<Clob> {
-    private Clob value;
+public final class QueryParameterRef implements QueryParameter<Ref> {
+    private Ref value;
 
-    public QueryParameterClob(Clob value) {
+    public QueryParameterRef(Ref value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public Clob getValue() {
+    public Ref getValue() {
         return value;
     }
 
     @Override
-    public void setValue(Clob value) {
+    public void setValue(Ref value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setClob(parameterIndex, value);
+        preparedStatement.setRef(parameterIndex, value);
     }
 }

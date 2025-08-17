@@ -1,28 +1,29 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.sql.PreparedStatement;
+import java.sql.RowId;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterNString implements QueryParameter<String> {
-    private String value;
+public final class QueryParameterRowId implements QueryParameter<RowId> {
+    private RowId value;
 
-    public QueryParameterNString(String value) {
+    public QueryParameterRowId(RowId value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public String getValue() {
+    public RowId getValue() {
         return value;
     }
 
     @Override
-    public void setValue(String value) {
+    public void setValue(RowId value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setNString(parameterIndex, value);
+        preparedStatement.setRowId(parameterIndex, value);
     }
 }

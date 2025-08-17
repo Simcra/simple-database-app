@@ -1,28 +1,28 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterDouble implements QueryParameter<Double> {
-    private Double value;
+public final class QueryParameterString implements QueryParameter<String> {
+    private String value;
 
-    public QueryParameterDouble(Double value) {
+    public QueryParameterString(String value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public Double getValue() {
+    public String getValue() {
         return value;
     }
 
     @Override
-    public void setValue(Double value) {
+    public void setValue(String value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setDouble(parameterIndex, value.doubleValue());
+        preparedStatement.setString(parameterIndex, value);
     }
 }

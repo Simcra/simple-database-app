@@ -1,29 +1,28 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public final class QueryParameterArray implements QueryParameter<Array> {
-    private Array value;
+public final class QueryParameterBoolean implements QueryParameter<Boolean> {
+    private Boolean value;
 
-    public QueryParameterArray(Array value) {
+    public QueryParameterBoolean(Boolean value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public Array getValue() {
+    public Boolean getValue() {
         return value;
     }
 
     @Override
-    public void setValue(Array value) {
+    public void setValue(Boolean value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setArray(parameterIndex, value);
+        preparedStatement.setBoolean(parameterIndex, value.booleanValue());
     }
 }

@@ -1,28 +1,29 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLXML;
 import java.util.Objects;
 
-public final class QueryParameterBoolean implements QueryParameter<Boolean> {
-    private Boolean value;
+public final class QueryParameterSQLXML implements QueryParameter<SQLXML> {
+    private SQLXML value;
 
-    public QueryParameterBoolean(Boolean value) {
+    public QueryParameterSQLXML(SQLXML value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public Boolean getValue() {
+    public SQLXML getValue() {
         return value;
     }
 
     @Override
-    public void setValue(Boolean value) {
+    public void setValue(SQLXML value) {
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public void apply(PreparedStatement preparedStatement, int parameterIndex) throws SQLException {
-        preparedStatement.setBoolean(parameterIndex, value.booleanValue());
+        preparedStatement.setSQLXML(parameterIndex, value);
     }
 }

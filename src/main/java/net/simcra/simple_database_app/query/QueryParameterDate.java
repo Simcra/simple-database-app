@@ -1,4 +1,4 @@
-package net.simcra.simple_database_app.query.parameter;
+package net.simcra.simple_database_app.query;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
