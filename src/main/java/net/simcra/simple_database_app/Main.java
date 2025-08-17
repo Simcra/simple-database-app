@@ -1,6 +1,5 @@
 package net.simcra.simple_database_app;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
