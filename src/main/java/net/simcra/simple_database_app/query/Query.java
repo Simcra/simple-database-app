@@ -11,7 +11,8 @@ public class Query {
     private List<QueryParameter<?>> queryParameters;
     private PreparedStatement preparedStatement;
 
-    public Query(Connection connection, String sql, List<QueryParameter<?>> queryParameters) throws SQLException {
+    public Query(Connection connection, String sql, List<QueryParameter<?>> queryParameters)
+            throws SQLException {
         this.preparedStatement = Objects.requireNonNull(connection).prepareStatement(sql);
         this.queryParameters = Objects.requireNonNull(queryParameters);
     }
