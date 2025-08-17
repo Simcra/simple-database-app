@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 # Package Files #
-target
 *.jar
 *.war
 *.nar
@@ -24,8 +23,13 @@ target
 hs_err_pid*
 replay_pid*
 
-# Nix
-result
-
 # Direnv
 .direnv/
+
+# Maven
+target
+dependency-reduced-pom.xml
+
+# Runtime output
+test.db
+result
